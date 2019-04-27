@@ -28,3 +28,5 @@ function searchRouter(req, res) {
     }
 }
 
+module.exports.home = homeRouter;
+module.exports.search = searchRouter;
