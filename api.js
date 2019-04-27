@@ -2,7 +2,7 @@ const http = require('http');
 
 
 
-function getApi(name), callback {
+function getApi(name, callback) {
     let link = 'http://nikola-breznjak.com/_testings/ajax/test1.php?ime=' + name;
     http.get(link, (response) => {
         console.log(response.statusCode);
@@ -25,4 +25,3 @@ function getApi(name), callback {
 }
 
 module.exports.get = getApi;
-module.exports.test = test;

@@ -9,11 +9,14 @@ function merge(values, data){
 }
 
 function view(templateName, values, response) {
-    var data = fs.readFileSync('./views/' + templateName + '.html').toString;
     //pročitala template file
+    var data = fs.readFileSync('./views/' + templateName + '.html').toString;
 
     //zamjenila params.
-    data = merge(values, data);
+    if (Object.keys(values).length > 0){
+        data = merge(values, data);
+    }
+        
     //ispisati response
     response.write(data);
 }
