@@ -17,11 +17,11 @@ function searchRouter(req, res) {
         res.statusCode = 200;
         res.setHeader('Content-Type', 'text/html');
 
-        var name = req.url.replace ('/results?name=', '');
+        var pic = req.url.replace ('/results?giphy', '');
 
         render.view('header', {}, res);
-        render.view('results', {
-            user: name
+        render.view('results', {            
+            giphy: pic
         }, res);
         render.view('footer', {}, res);
         res.end();
