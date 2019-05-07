@@ -1,47 +1,29 @@
-
 const fs = require('fs');
 const jsdom = require("jsdom");
 const { JSDOM } = jsdom;
 
-
-
-function merge(values, data){
-    console.log("Hello!");
-    for (var key in values){
-        data = data.replace('{{' + key + '}}', values[key]);
-    }
-    return data;
-}
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+var xhr = new XMLHttpRequest();
 
 function getGiphy(values){
-    var XMLHttpRequest = require('xhr2');
-    var xhr = new XMLHttpRequest();
+//    var XMLHttpRequest = require('xhr2');
+//    var xhr = new XMLHttpRequest();
     const link = 'http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=wjgKcH3h3opPNZRxUXNJAkSLAP07Ef86&limit=3=$' + values;
     /*Giphy api key=wjgKcH3h3opPNZRxUXNJAkSLAP07Ef86*/
-    xhr.open('GET', link);
-    xhr.send();
+    xhr.open('GET', link, false);
 
+    var output = '';
     xhr.onreadystatechange=function(){
-        if (this.readyState == 4){
+        if (this.readyState === 4){
             var giphy = JSON.parse(xhr.responseText);
-            console.log(giphy.data);
+            for (var i = 0; i < 3; i++){
+                output += '<figure class="image is-128x128"><img src="' + giphy.data[i].images.downsized.url + '"></figure>';
+            };
         };
     };
+    xhr.send();
 
-        
-/*        $.getJSON(link, function(giphy){
-        $.each(giphy.data, function(ind, dataG){
-            var img = dataG.images.downsized.url;
-        
-            output += `<img src="${img}"/>`;
-
-        });
-        }
-    }
-
-   
-    });
-    console.log('Output: ' + output);*/
+    return output;
 }
 
 

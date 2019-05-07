@@ -19,6 +19,7 @@ function searchRouter(req, res) {
 
         var pic = req.url.replace ('/results?giphy', '');
 
+        console.log('Tu sam!');
         render.view('header', {}, res);
         render.view('results', {            
             giphy: pic

@@ -16,7 +16,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/results', (req, res) => {
-	var pic = render.getGiphy(req.query.bla);
+	var pic = render.getGiphy(req.query.giphy);
+	console.log(pic);
 	res.render('results');
 });
 
