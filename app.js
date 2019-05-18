@@ -16,9 +16,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/results', (req, res) => {
-	var pic = render.getGiphy(req.query.giphy);
-	console.log(pic);
-	res.render('results');
+	var pic = render.getGiphy(req.query.name);
+	res.render('results', {
+		giphyHttml: pic
+	});
 });
 
 app.listen(port, () => console.log(`Example app listening! ${port}!`))
